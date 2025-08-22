@@ -5,12 +5,25 @@ import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-# Debug des variables d'environnement
 print("=== DEBUG VARIABLES D'ENVIRONNEMENT ===")
 print(f"EMAIL_USERNAME présent: {'EMAIL_USERNAME' in os.environ}")
 print(f"EMAIL_PASSWORD présent: {'EMAIL_PASSWORD' in os.environ}")
 print(f"SMTP_SERVER présent: {'SMTP_SERVER' in os.environ}")
 print(f"SMTP_PORT présent: {'SMTP_PORT' in os.environ}")
+
+# Debug des valeurs (masquées pour sécurité)
+email_username = os.getenv("EMAIL_USERNAME")
+email_password = os.getenv("EMAIL_PASSWORD")
+if not email_password or email_password.strip() == "":
+    print(f"ERREUR: Le mot de passe email n'est pas configuré. Valeur: '{mot_de_passe}'")
+    exit(1)
+smtp_server = os.getenv("SMTP_SERVER")
+smtp_port = os.getenv("SMTP_PORT")
+
+print(f"EMAIL_USERNAME longueur: {len(email_username) if email_username else 'None'}")
+print(f"EMAIL_PASSWORD longueur: {len(email_password) if email_password else 'None'}")
+print(f"SMTP_SERVER longueur: {len(smtp_server) if smtp_server else 'None'}")
+print(f"SMTP_PORT longueur: {len(smtp_port) if smtp_port else 'None'}")
 print("==========================================")
 
 
