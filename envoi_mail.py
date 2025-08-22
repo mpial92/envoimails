@@ -11,10 +11,11 @@ wb = openpyxl.load_workbook(chemin_fichier_excel)
 sheet = wb.active
 
 # Paramètres du compte et du serveur SMTP depuis les variables d'environnement
-adresse_email = os.getenv("EMAIL_USERNAME", "contact@lecercledesseniorsneuflizeobc.fr")
+# Paramètres du compte et du serveur SMTP depuis les variables d'environnement
+adresse_email = os.getenv("EMAIL_USERNAME") or "contact@lecercledesseniorsneuflizeobc.fr"
 mot_de_passe = os.getenv("EMAIL_PASSWORD")
-serveur_smtp = os.getenv("SMTP_SERVER", "ssl0.ovh.net")
-port_smtp = int(os.getenv("SMTP_PORT", 587))
+serveur_smtp = os.getenv("SMTP_SERVER") or "ssl0.ovh.net"
+port_smtp = int(os.getenv("SMTP_PORT") or "587")
 
 # Vérification des variables d'environnement critiques
 if not mot_de_passe:
