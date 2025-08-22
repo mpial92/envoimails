@@ -8,7 +8,7 @@ on:
 
 jobs:
   smoke:
-    name: Run main.py (smoke test)
+    name: Run envoi_mail.py (smoke test)
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -31,6 +31,6 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run main.py
-        run: python main.py
+      - name: Run envoi_mail.py
+        run: python envoi_mail.py
  
