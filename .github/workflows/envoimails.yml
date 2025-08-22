@@ -15,7 +15,7 @@ on:
 
 # Définition des jobs
 jobs:
-  envoiemails:
+  envoimails:
     runs-on: ubuntu-latest
     
     steps:
