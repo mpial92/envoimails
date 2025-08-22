@@ -49,7 +49,7 @@ jobs:
     # Optionnel : Upload des logs en cas d'erreur
     - name: Upload logs si erreur
       if: failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: error-logs
         path: '*.log'
