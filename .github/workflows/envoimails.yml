@@ -38,23 +38,14 @@ jobs:
     # Exécution du script
     - name: Exécution du script d'envoi d'emails
       env:
-        # Variables d'environnement pour les credentials (à configurer plus tard)
-        EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
-        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-        SMTP_PORT: ${{ secrets.SMTP_PORT }}
+        EMAIL_USERNAME: ${{ secrets.MAIL_USER }}
+        EMAIL_PASSWORD: ${{ secrets.MAIL_PASS }}
+        SMTP_SERVER: ${{ secrets.MAIL_HOST }}
+        SMTP_PORT: ${{ secrets.MAIL_PORT }}
       run: |
         echo "=== TEST BASH ==="
         echo "USERNAME: '${EMAIL_USERNAME}'"
         echo "PASSWORD: '${EMAIL_PASSWORD}'"
-        echo "SERVER: '${SMTP_SERVER}'"
-        echo "PORT: '${SMTP_PORT}'"
-        echo "USERNAME length: ${#EMAIL_USERNAME}"
-        echo "PASSWORD length: ${#EMAIL_PASSWORD}"
-        echo "SERVER length: ${#SMTP_SERVER}"
-        echo "PORT length: ${#SMTP_PORT}"
-        echo "=== TEST PYTHON ==="
-        python -c "import os; print('USERNAME Python:', repr(os.getenv('EMAIL_USERNAME'))); print('PASSWORD Python:', repr(os.getenv('EMAIL_PASSWORD')))"
         echo "=== EXECUTION SCRIPT ==="
         python envoi_mail.py
     
