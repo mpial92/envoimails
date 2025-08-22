@@ -5,6 +5,15 @@ import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+# Debug des variables d'environnement
+print("=== DEBUG VARIABLES D'ENVIRONNEMENT ===")
+print(f"EMAIL_USERNAME présent: {'EMAIL_USERNAME' in os.environ}")
+print(f"EMAIL_PASSWORD présent: {'EMAIL_PASSWORD' in os.environ}")
+print(f"SMTP_SERVER présent: {'SMTP_SERVER' in os.environ}")
+print(f"SMTP_PORT présent: {'SMTP_PORT' in os.environ}")
+print("==========================================")
+
+
 # Charger le fichier Excel
 chemin_fichier_excel = 'liste.xlsx'
 wb = openpyxl.load_workbook(chemin_fichier_excel)
