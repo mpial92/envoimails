@@ -38,15 +38,14 @@ jobs:
     # Exécution du script
     - name: Exécution du script d'envoi d'emails
       env:
-        EMAIL_USERNAME: ${{ secrets.MAIL_USER }}
-        EMAIL_PASSWORD: ${{ secrets.MAIL_PASS }}
-        SMTP_SERVER: ${{ secrets.MAIL_HOST }}
-        SMTP_PORT: ${{ secrets.MAIL_PORT }}
+        EMAIL_USERNAME: "contact@lecercledesseniorsneuflizeobc.fr"
+        EMAIL_PASSWORD: "Cerclenew2021##"
+        SMTP_SERVER: "ssl0.ovh.net"
+        SMTP_PORT: 587
       run: |
-        echo "=== TEST BASH ==="
+        echo "=== TEST DIRECT ==="
         echo "USERNAME: '${EMAIL_USERNAME}'"
-        echo "PASSWORD: '${EMAIL_PASSWORD}'"
-        echo "=== EXECUTION SCRIPT ==="
+        echo "PASSWORD length: ${#EMAIL_PASSWORD}"
         python envoi_mail.py
     
     # Optionnel : Upload des logs en cas d'erreur
