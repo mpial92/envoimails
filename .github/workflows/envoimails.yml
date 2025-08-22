@@ -44,7 +44,7 @@ jobs:
         SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
         SMTP_PORT: ${{ secrets.SMTP_PORT }}
       run: |
-        python envoi-mail.py
+        python envoi_mail.py
     
     # Optionnel : Upload des logs en cas d'erreur
     - name: Upload logs si erreur
