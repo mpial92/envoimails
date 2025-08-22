@@ -1,0 +1,55 @@
+name: Envoi Emails Automatique
+
+# Déclencheurs du workflow
+on:
+  # Déclenchement manuel
+  workflow_dispatch:
+  
+  # Déclenchement programmé (optionnel - exemple : tous les jours à 9h00 UTC)
+  # schedule:
+  #   - cron: '0 9 * * *'
+  
+  # Déclenchement sur push (pour les tests)
+  push:
+    branches: [ main ]
+
+# Définition des jobs
+jobs:
+  envoi-emails:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Checkout du code
+    - name: Checkout du repository
+      uses: actions/checkout@v4
+    
+    # Installation de Python
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    # Installation des dépendances
+    - name: Installation des packages Python
+      run: |
+        python -m pip install --upgrade pip
+        pip install openpyxl
+    
+    # Exécution du script
+    - name: Exécution du script d'envoi d'emails
+      env:
+        # Variables d'environnement pour les credentials (à configurer plus tard)
+        EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
+        SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      run: |
+        python envoi-mail.py
+    
+    # Optionnel : Upload des logs en cas d'erreur
+    - name: Upload logs si erreur
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: error-logs
+        path: '*.log'
