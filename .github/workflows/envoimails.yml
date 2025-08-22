@@ -15,7 +15,7 @@ on:
 
 # Définition des jobs
 jobs:
-  envoi-emails:
+  envoi_emails:
     runs-on: ubuntu-latest
     
     steps:
