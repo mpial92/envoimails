@@ -14,7 +14,8 @@ print(f"SMTP_PORT présent: {'SMTP_PORT' in os.environ}")
 # Debug des valeurs (masquées pour sécurité)
 email_username = os.getenv("EMAIL_USERNAME")
 email_password = os.getenv("EMAIL_PASSWORD")
-if not email_password or email_password.strip() == "":
+mot_de_passe =  os.getenv("EMAIL_PASSWORD")
+if not mot_de_passe or mot_de_passe.strip() == "":
     print(f"ERREUR: Le mot de passe email n'est pas configuré. Valeur: '{mot_de_passe}'")
     exit(1)
 smtp_server = os.getenv("SMTP_SERVER")
