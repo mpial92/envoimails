@@ -44,6 +44,11 @@ jobs:
         SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
         SMTP_PORT: ${{ secrets.SMTP_PORT }}
       run: |
+        echo "Test des secrets:"
+        echo "USERNAME length: ${#EMAIL_USERNAME}"
+        echo "PASSWORD length: ${#EMAIL_PASSWORD}"
+        echo "SERVER length: ${#SMTP_SERVER}"
+        echo "PORT length: ${#SMTP_PORT}"
         python envoi_mail.py
     
     # Optionnel : Upload des logs en cas d'erreur
