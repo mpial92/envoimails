@@ -37,6 +37,11 @@ jobs:
     
     # Exécution du script
     - name: Exécution du script d'envoi d'emails
+      env:
+        EMAIL_USERNAME: ${{ vars.MAIL_USERNAME }}
+        EMAIL_PASSWORD: ${{ vars.MAIL_PASSWORD }}
+        SMTP_SERVER: ${{ vars.MAIL_SERVER }}
+        SMTP_PORT: ${{ vars.MAIL_PORT }}
       run: |
         python envoi_mail.py
     

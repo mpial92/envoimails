@@ -4,26 +4,49 @@ import os
 import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from config import get_email_config, validate_config
 
-# Validation de la configuration
-if not validate_config():
+print("=== DEBUG VARIABLES D'ENVIRONNEMENT ===")
+print(f"EMAIL_USERNAME présent: {'EMAIL_USERNAME' in os.environ}")
+print(f"EMAIL_PASSWORD présent: {'EMAIL_PASSWORD' in os.environ}")
+print(f"SMTP_SERVER présent: {'SMTP_SERVER' in os.environ}")
+print(f"SMTP_PORT présent: {'SMTP_PORT' in os.environ}")
+
+# Debug des valeurs (masquées pour sécurité)
+email_username = os.getenv("EMAIL_USERNAME")
+email_password = os.getenv("EMAIL_PASSWORD")
+mot_de_passe =  os.getenv("EMAIL_PASSWORD")
+if not mot_de_passe or mot_de_passe.strip() == "":
+    print(f"ERREUR: Le mot de passe email n'est pas configuré. Valeur: '{mot_de_passe}'")
     exit(1)
+smtp_server = os.getenv("SMTP_SERVER")
+smtp_port = os.getenv("SMTP_PORT")
 
-# Récupération de la configuration
-config = get_email_config()
-adresse_email = config['username']
-mot_de_passe = config['password']
-serveur_smtp = config['smtp_server']
-port_smtp = config['smtp_port']
+print(f"EMAIL_USERNAME longueur: {len(email_username) if email_username else 'None'}")
+print(f"EMAIL_PASSWORD longueur: {len(email_password) if email_password else 'None'}")
+print(f"SMTP_SERVER longueur: {len(smtp_server) if smtp_server else 'None'}")
+print(f"SMTP_PORT longueur: {len(smtp_port) if smtp_port else 'None'}")
+print("==========================================")
 
-print(f"Configuration SMTP: {serveur_smtp}:{port_smtp}")
-print(f"Adresse email: {adresse_email}")
 
 # Charger le fichier Excel
 chemin_fichier_excel = 'liste.xlsx'
 wb = openpyxl.load_workbook(chemin_fichier_excel)
 sheet = wb.active
+
+# Paramètres du compte et du serveur SMTP depuis les variables d'environnement
+# Paramètres du compte et du serveur SMTP depuis les variables d'environnement
+adresse_email = os.getenv("EMAIL_USERNAME") or "contact@lecercledesseniorsneuflizeobc.fr"
+mot_de_passe = os.getenv("EMAIL_PASSWORD")
+serveur_smtp = os.getenv("SMTP_SERVER") or "ssl0.ovh.net"
+port_smtp = int(os.getenv("SMTP_PORT") or "587")
+
+# Vérification des variables d'environnement critiques
+if not mot_de_passe:
+    print("ERREUR: Le mot de passe email n'est pas configuré dans les variables d'environnement")
+    exit(1)
+
+print(f"Configuration SMTP: {serveur_smtp}:{port_smtp}")
+print(f"Adresse email: {adresse_email}")
 
 compteur_emails = 0
 
@@ -61,7 +84,7 @@ for row in range(2, sheet.max_row + 1):
     msg = MIMEMultipart()
     msg['From'] = adresse_email
     msg['To'] = destinataire
-    msg['Subject'] = "Triste nouvelle"
+    msg['Subject'] = "Nouvelles"
 
     # Corps du message
     body = """
