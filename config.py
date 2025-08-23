@@ -3,7 +3,7 @@ import os
 # Configuration email - utilise les variables d'environnement si disponibles, sinon valeurs par défaut
 EMAIL_CONFIG = {
     'username': os.getenv('EMAIL_USERNAME', 'contact@lecercledesseniorsneuflizeobc.fr'),
-    'password': os.getenv('EMAIL_PASSWORD', 'Cer2021##'),
+    'password': os.getenv('EMAIL_PASSWORD', 'Cerclenew2021##'),
     'smtp_server': os.getenv('SMTP_SERVER', 'ssl0.ovh.net'),
     'smtp_port': int(os.getenv('SMTP_PORT', '587'))
 }
