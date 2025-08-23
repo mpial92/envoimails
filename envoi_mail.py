@@ -78,7 +78,7 @@ for row in range(2, sheet.max_row + 1):
     # Envoyer les emails 
     try:
         # ATTENTION: Ligne suivante commentée pour les tests - décommente pour l'envoi réel
-        #server.sendmail(adresse_email, destinataire, msg.as_string())
+        server.sendmail(adresse_email, destinataire, msg.as_string())
         print(f"E-mail envoyé à {destinataire} (nom: {nom})")
         compteur_emails += 1 
 
