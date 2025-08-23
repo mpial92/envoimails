@@ -61,7 +61,7 @@ for row in range(2, sheet.max_row + 1):
     msg = MIMEMultipart()
     msg['From'] = adresse_email
     msg['To'] = destinataire
-    msg['Subject'] = "Triste nouvelle"
+    msg['Subject'] = "Nouvelles"
 
     # Corps du message
     body = """
